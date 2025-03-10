@@ -26,7 +26,16 @@ def results():
    color_choice = request.form['color']
    fav_num = request.form['lucky_number']
    fav_class = request.form['fav_class']
-   fav_pix = request.form['best_pix']
+   fav_pix = request.form['best_pix'].lower().strip()
+   films = ["toy story","a bug's life","toy story 2","monsters, inc.",
+      "finding nemo", "the incredibles","cars","ratatouille","wall-e","up",
+      "toy story 3","cars 2", "brave","monsters university","inside out",
+      "the good dinosaur","finding dory", "cars 3","coco","incredibles 2",
+      "toy story 4","onward","soul"]
+   if fav_pix not in films:
+      fav_pix = "Sorry, '{0}' isn't a Pixar film.".format(fav_pix.title())
+   else:
+      fav_pix = fav_pix.title()
 
    return render_template('form_results.html', color = color_choice, lucky_number = fav_num, fav_class = fav_class, best_pix = fav_pix)
 
